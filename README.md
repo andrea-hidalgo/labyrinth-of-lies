@@ -41,7 +41,7 @@ Color Pallet:
 
 #### User stories
 
-As an user I expect to see a button bla bla bla bla
+As an user I expect to see ...
 
 #### Development Plans
 
@@ -55,21 +55,30 @@ MVP ONE
   * Player can select start button to start game
 * Play screen
   * Player can see story and make choices
-  * Player can fight monsters
   * Display player stats
 
 MVP TWO
+* Player can fight monsters
+* Player can heal
+* Longer storyline
+
+MVP THREE
 * Create additional setup screens
   * Player can input their name
   * Player can select a class to play as, each class has different stats
-* Longer storyline
+
+MVP FOUR
 * Display monster pictures
-
-
+  
 #### Stretch goals
 
-* Expand the storyline
+* Find additional health potions inside the labyrinth
+* Find better weapons inside the labyrinth
+* Add ability to rest to restore health to full 
 * Introduce luck element, make players roll a virtual die to determine the outcome.
+* There is a chance that Monsters will heal
+* Changing labyrinth. Selecting the same option might yield different results based on chance with every playthrough. 
+* Expand storyline
 
 ## Challenges:
 
