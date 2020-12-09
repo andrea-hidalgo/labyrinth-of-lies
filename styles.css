@@ -1,3 +1,42 @@
 body {
-    background-color: grey;
+    background-color: black;
+    background-image: url(/images/cave.jpg);
+    background-size: cover;
+    font-size: 10px;
+}
+
+#startScreen {
+    display: none;
+}
+
+#gameScreen {
+    margin:  auto;
+    padding: 1rem;
+    width: 85%;
+    height: 60vh;
+    background-color: #190600;
+    color: #904d19;
+    font-size: 1rem;
+    border-radius: 15px;
+}
+
+.storyDisplay {
+    margin: 0 auto;
+    height: 50%;
+    text-align: center;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.playerStats {
+    border: solid 2px #904d19;
+    border-radius: 15px;
+}
+
+ul {
+    list-style: none;
+}
+
+.optionThree {
+    display: none;
 }
