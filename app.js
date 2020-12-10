@@ -107,42 +107,72 @@ class Monster {
     }
 }
 
+class Scenario {
+    constructor(type, story, optionOne, optionTwo, optionThree) {
+        this.type = type, 
+        this.story = story,
+        this.optionOne = optionOne,
+        this.optionTwo = optionTwo,
+        this.optionThree = optionThree
+    }
+}
+
+
 const displayStory = (scenario) => {
     $('.storyDisplay').text(scenario.story);
-    console.log('story displayed');
 }
 
 const displayOptions = (scenario) => {
     $('.optionOne').text(scenario.optionOne);
     $('.optionTwo').text(scenario.optionTwo);
+    if (scenario.optionThree) {
+        $('.optionThree').css('display','block').text(scenario.optionThree);
+        console.log('option three displayed');
+    }
     console.log('option one and two displayed');
-}
+} 
 
 const runScenario = (scenario) => {
     console.log(`displaying ${scenario.type} scenario `);
     displayStory(scenario);
     displayOptions(scenario);
+
+    currentScenario = scenario;
+    console.log(scenario);
 }
 
-const startScenario = {
-    type: "story",
-    story: "ABC",
-    optionOne: "Run left",
-    selectOne: "",
-    optionTwo: "Run right",
-    selectTwo: ""
-}
+const startScenario = new Scenario (
+    'story',
+    "You enter the dungeon slowly, there are two lanes in front of you", 
+    "go right",
+    "go left",
+    )
 
-const scenarioOne = {
-    type: "story", 
-    story: "XYZ",
-    optionOne: "Go north",
-    selectOne: runScenario(startScenario),
-    optionTwo: "Go south",
-    selectTwo: "runScenario(scenarioTwo)"
-}
+const scenarioTwo = new Scenario (
+    'story', 
+    "You see a small pebble in front of you, and then a stream",
+    "pick up pebble",
+    'throw pebble into stream',
+)
 
+let currentScenario = startScenario;
+console.log(`The current scenario is ${currentScenario}`);
 
 runScenario(startScenario);
 
+$('.optionOne').on('click', () => {
+    if (currentScenario === startScenario) {
+        runScenario(scenarioTwo);
+    }
 
+})
+
+$('optionTwo').on('click', () => {
+    if (currentScenario === startScenario) {
+        runScenario()
+    }
+})
+
+$('optionThree').on('click', () => {
+
+})
