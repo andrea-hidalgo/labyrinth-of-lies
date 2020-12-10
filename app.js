@@ -74,7 +74,7 @@ console.log($);
 
 class Player {
     constructor() {
-        this.name = "Player";
+        this.name = "Alex";
         this.playerClass = "Knight";
         this.weapon = "Sword";
         this.weaponPower = 5;
@@ -115,9 +115,43 @@ class Scenario {
         this.optionTwo = optionTwo,
         this.optionThree = optionThree
     }
+    runScenario() {}
+
 }
 
+const player = new Player;
 
+///functions that display player stats on the DOM
+const displayName = (player) => {
+    $('.playerName').text(player.name);
+}
+
+const displayClass = (player) => {
+    $('.playerClass').text(player.playerClass);
+}
+
+const displayHealth = (player) => {
+    $('.playerHealth').text(player.health);
+}
+
+const displayWeapon = (player) => {
+    // $('.playerWeapon').text(player.weapon);
+    $('.playerWeaponPower').before(player.weapon + " ");
+    $('.playerWeaponPower').text(player.weaponPower);
+}
+
+const displayPotions = (player) => {
+    $('.healingPotions').text(player.healthPotions);
+}
+
+displayName(player);
+displayClass(player);
+displayWeapon(player);
+displayHealth(player);
+displayPotions(player);
+
+
+//functions that display story elements in the DOM
 const displayStory = (scenario) => {
     $('.storyDisplay').text(scenario.story);
 }
@@ -132,15 +166,16 @@ const displayOptions = (scenario) => {
     console.log('option one and two displayed');
 } 
 
+//display all the correct elements of a scenario on the DOM and set the current Scenario
 const runScenario = (scenario) => {
     console.log(`displaying ${scenario.type} scenario `);
     displayStory(scenario);
     displayOptions(scenario);
-
     currentScenario = scenario;
     console.log(scenario);
 }
 
+//scenarios
 const startScenario = new Scenario (
     'story',
     "You enter the dungeon slowly, there are two lanes in front of you", 
