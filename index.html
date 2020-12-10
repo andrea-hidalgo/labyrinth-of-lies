@@ -7,15 +7,17 @@
     <title>Labyrinth of Lies</title>
 </head>
 <body>
-    <div id="startScreen">
+    <section id="startScreen">
         <h1>Labyrinth of Lies</h1>
         <button>START GAME</button>
-    </div>
-    <div id="playerCustomizeScreen"></div>
-    <div id="storyIntroScreen"></div>
-    <div id="gameScreen">
-        <div class="storyDisplay">            
+    </section>
+    <section id="playerCustomizeScreen"></section>
+    <section id="storyIntroScreen"></section>
+    <section id="gameScreen">
+        <div class="display">
+            <p class="storyDisplay"></p>
         </div>
+        <div class="lower-section">
         <div class="playerStats">
             <ul>
                 <li class="playerName"></li>
@@ -27,12 +29,17 @@
             </ul>
         </div>
         <div class="playerOptions">
-            <button class="optionOne"></button>
-            <button class="optionTwo"></button>
-            <button class="optionThree"></button>
+            <button class="option optionOne"></button>
+            <button class="option optionTwo"></button>
+            <button class="option optionThree"></button>
         </div>
+        </div>
+    </section>
 
-    </div>
-    <script src="app.js"></script>
+    <script
+src="https://code.jquery.com/jquery-3.2.1.min.js"
+integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+crossorigin="anonymous"></script>
+<script src="app.js"></script>
 </body>
 </html>
