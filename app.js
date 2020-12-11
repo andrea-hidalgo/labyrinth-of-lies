@@ -73,8 +73,8 @@ console.log('Hello World');
 console.log($);
 
 class Player {
-    constructor() {
-        this.name = "Alex";
+    constructor(name) {
+        this.name = name;
         this.playerClass = "Knight";
         this.weapon = "Sword Power";
         this.weaponPower = 5;
@@ -155,9 +155,6 @@ class FightScenario {
         this.monsterImage = monsterImage
     }
 }
-
-const player = new Player;
-const riverMonster = new Monster ('Water Dragon', 'Claws', 2, 10);
 
 ///functions that display player stats on the DOM
 const displayName = (player) => {
@@ -253,7 +250,31 @@ const fight = () => {
     console.log('fight');
 }
 
+let player = null;
+
+//create player
+const newPlayer = () => {
+    const playerName = $('#playerName').val();
+    console.log(playerName);
+    player =  new Player(playerName);
+}
+
+//display player stats at the beginning of the game
+const displayAllStats = () => {
+    displayName(player);
+    displayClass(player);
+    displayWeapon(player);
+    displayHealth(player);
+    displayPotions(player);
+}
+
+//create all monsters
+//monsters must be declared before fight scenarios
+const riverMonster = new Monster ('Water Dragon', 'Claws', 2, 10);
+
 //scenarios
+const introScenario = ["Game introduction"];
+
 const startScenario = new Scenario (
     'startScenario',
     "You enter the dungeon slowly, there are two lanes in front of you", 
@@ -275,6 +296,7 @@ const scenarioThree = new FightScenario (
 )
 
 //stores which scenarios should be displayed depending on players choices
+//must be declared after scenarios are created
 const game = {
     startScenario: [scenarioTwo, scenarioThree],
     scenarioTwo: [scenarioThree, startScenario],
@@ -285,20 +307,25 @@ const game = {
 let currentScenario = null;
 console.log(`The current scenario is ${currentScenario}`);
 
-//call to display player stats at the beginning of the game
-displayName(player);
-displayClass(player);
-displayWeapon(player);
-displayHealth(player);
-displayPotions(player);
-
 //event listeners
 $(() => {
 
     //when the start game button is clicked, display the next screen
-	$('#start-btn').on('click', () => {
+	$('#startScreen-btn').on('click', () => {
         $('#startScreen').css('display', 'none');
+        $('#playerCustomizeScreen').css('display', 'flex');
+    })
+
+    $('#customize-btn').on('click', () => {
+        $('#playerCustomizeScreen').css('display', 'none');
+        $('#storyIntroScreen').css('display', 'flex');
+    })
+
+    $('#storyIntro-btn').on('click', () => { 
+        $('#storyIntroScreen').css('display', 'none');
         $('#gameScreen').css('display', 'flex');
+        newPlayer();
+        displayAllStats();
         runScenario(startScenario);
     })
     
@@ -337,3 +364,4 @@ $(() => {
 });
 
 //TO-DO 
+//create player object only when the customize button is clicked, make it have personalized name
