@@ -15,7 +15,27 @@ body {
 }
 
 #startScreen {
-    display: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 40vh;
+}
+
+#startScreen h1 {
+    font-size: 4rem;
+    font-family: fantasy, Georgia, 'Times New Roman', Times, serif;
+}
+
+#startScreen p {
+    font-size: 1.5rem;
+}
+
+#startScreen button {
+    background-color: #ff6f23;
+    color: white;
+    width: 15rem;
+    margin: 5rem;
 }
 
 #gameScreen {
@@ -27,7 +47,8 @@ body {
     color: #904d19;
     font-size: 1rem;
     border-radius: 15px;
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-wrap: wrap;
     align-content: center;
     align-items: center;
@@ -37,20 +58,23 @@ body {
 
 .display {
     margin: 0 auto;
+    padding: 0.5em;
     height: 60%;
     width: 100%;
     text-align: center;
     background-color: #190600;
     border-radius: 15px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     align-content: center;
     box-shadow:inset 0.5em 0.5em rgba(0,0,0,0.17);
 }
 
-.storyDisplay {
+.display p {
     width: 100%;
     font-size: 1.5em;
+    margin: .5em;
 }
 
 .lower-section {
@@ -59,20 +83,33 @@ body {
     align-content: center;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
 
 .playerStats {
-    border: solid 2px #904d19;
+    background-color: #3c1c07;
     border-radius: 15px;
     width: 45%;
     margin: 1rem;
-    flex-basis: 1;
+    box-shadow: .4em .4em rgba(0,0,0,0.20);
+}
+
+li {
+    margin: 0.5rem;
+    font-size: 1.2rem;
+}
+
+span {
+    color: #ffa057;
+}
+
+.playerName {
+    font-size: 1.5rem;
 }
 
 .playerOptions {
     width: 40%;
     margin: 1rem;
-    flex-basis: 1;
 }
 
 .option {
@@ -83,7 +120,7 @@ body {
     border-radius: 10px;
     text-transform: uppercase;
     text-decoration:none;
-    font-weight:400;
+    font-size: 1rem;
     color:#904d19;
     background-color: #562308;
     box-shadow:inset 0 -.4em rgba(0,0,0,0.20);
@@ -98,6 +135,7 @@ ul {
     list-style: none;
 }
 
-.optionThree {
+.displayNone {
     display: none;
 }
+
