@@ -184,6 +184,10 @@ const displayStory = (string) => {
     $('.storyDisplay').text(string);
 }
 
+const introStoryDisplay = (string) => {
+    $('#introStoryDisplay').text(string);
+}
+
 const displayFight = (string) => {
     $('.monsterFight').text(string);
 }
@@ -201,7 +205,8 @@ const displayFightOptions = () => {
 const displayOptions = (scenario) => {
     $('.optionOne').text(scenario.optionOne);
     if (scenario.optionTwo) {
-    $('.optionTwo').text(scenario.optionTwo);
+        $('.optionTwo').removeClass('displayNone').text(scenario.optionTwo);
+        console.log('option two displayed');
     }
     if (scenario.optionThree) {
         $('.optionThree').removeClass('displayNone').text(scenario.optionThree);
@@ -273,13 +278,11 @@ const displayAllStats = () => {
 const riverMonster = new Monster ('Water Dragon', 'Claws', 2, 10);
 
 //scenarios
-const introScenario = ["Game introduction"];
 
 const startScenario = new Scenario (
     'startScenario',
     "You enter the dungeon slowly, there are two lanes in front of you", 
     "go right",
-    "go left",
     )
 
 const scenarioTwo = new Scenario (
@@ -310,17 +313,19 @@ console.log(`The current scenario is ${currentScenario}`);
 //event listeners
 $(() => {
 
-    //when the start game button is clicked, display the next screen
+    //when the start game button is clicked, display the player customization screen
 	$('#startScreen-btn').on('click', () => {
         $('#startScreen').css('display', 'none');
         $('#playerCustomizeScreen').css('display', 'flex');
     })
 
+    //when the customization button is clicked, display the player story intro screen
     $('#customize-btn').on('click', () => {
         $('#playerCustomizeScreen').css('display', 'none');
         $('#storyIntroScreen').css('display', 'flex');
     })
 
+    //when the story intro button is clicked, start game, create new player object, display player stats, run first scenario
     $('#storyIntro-btn').on('click', () => { 
         $('#storyIntroScreen').css('display', 'none');
         $('#gameScreen').css('display', 'flex');
@@ -346,6 +351,7 @@ $(() => {
         } else {
             const getScenario = game[currentScenario.name][1];
             runScenario(getScenario);
+            toggleHide($('.optionTwo'));
         }
     })
     
@@ -354,6 +360,7 @@ $(() => {
         if (currentScenario instanceof FightScenario) {
             const getScenario = game[currentScenario.name][0];
             runScenario(getScenario);
+            toggleHide($('.optionTwo'));
             toggleHide($('.optionThree'));
         } else {
             const getScenario = game[currentScenario.name][2];
@@ -364,4 +371,5 @@ $(() => {
 });
 
 //TO-DO 
-//create player object only when the customize button is clicked, make it have personalized name
+//add scenarios
+//add player classes
