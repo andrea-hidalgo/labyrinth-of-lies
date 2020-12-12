@@ -27,7 +27,7 @@ If a player dies, the game will start over from the beginning.
 
 #### Overview
 
-To start off with, I created a wireframe of what I envisioned the game would look like. This gave me a better idea of the features the user would expect to see and what I would need to add.
+To start off with, I created a wireframe of what I envisioned the game would look like. This gave me a better idea of the features the user would expect to see and what I would need to code in terms of logic.
 
 #### Wireframe
 
@@ -46,10 +46,6 @@ Colors scheme is based on the background image.
     #562308
     #89370b
 ```
-
-#### User stories
-
-As an user I expect to see ...
 
 #### Development Plans
 
@@ -90,6 +86,6 @@ MVP FOUR
 
 ## Challenges:
 
-The biggest challenge I faced was coming up with the architecture to avoid a large series of if/else statements to control the scenario displays. 
+The biggest challenge I faced was coming up with the architecture to avoid a large series of if/else statements to control the scenario displays. I was able to do it by using a separate object to keep track of the scenarios that should be displayed. 
 
 ### App Demo: https://andrea-hidalgo.github.io/labyrinth-of-lies/
