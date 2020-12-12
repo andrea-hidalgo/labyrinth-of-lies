@@ -1,6 +1,6 @@
 # Labyrinth of Lies
 
-### App Demo: www.linkegoeshere.com
+### App Demo: https://andrea-hidalgo.github.io/labyrinth-of-lies/
 
 ---
 
@@ -17,17 +17,17 @@ If a player dies, the game will start over from the beginning.
 * HTML
 * CSS
 * JavaScript 
+* JQuery
 
 ##### Credits:
 
-    Unsplash.com
-    unDraw.co
-    Slideshow Repo
+* Background vector created by brgfx - freepix.com
 
 ## Approach:
 
 #### Overview
-Description of how you approach the game development. Here you will add all the development phases, from wireframes to code sample. 
+
+To start off with, I created a wireframe of what I envisioned the game would look like. This gave me a better idea of the features the user would expect to see and what I would need to add.
 
 #### Wireframe
 
@@ -35,8 +35,16 @@ Description of how you approach the game development. Here you will add all the 
 
 Color Pallet:
 
+Colors scheme is based on the background image.
 ```
-    #tbd
+    #ff6f23
+    #271106
+    #904d19
+    #190600
+    #3c1c07
+    #ffa057
+    #562308
+    #89370b
 ```
 
 #### User stories
@@ -65,14 +73,14 @@ MVP TWO
 MVP THREE
 * Create additional setup screens
   * Player can input their name
-  * Player can select a class to play as, each class has different stats
+  * Player can select a class to play as, each class has different stats (in progress)
 
 MVP FOUR
 * Display monster pictures
   
 #### Stretch goals
 
-* Find additional health potions inside the labyrinth
+* Find additional health potions inside the labyrinth (done!)
 * Find better weapons inside the labyrinth
 * Add ability to rest to restore health to full 
 * Introduce luck element, make players roll a virtual die to determine the outcome.
@@ -82,7 +90,6 @@ MVP FOUR
 
 ## Challenges:
 
-Small description of a challenge you faced. 
+The biggest challenge I faced was coming up with the architecture to avoid a large series of if/else statements to control the scenario displays. 
 
-
-### App Demo: www.linkegoeshere.com
+### App Demo: https://andrea-hidalgo.github.io/labyrinth-of-lies/
