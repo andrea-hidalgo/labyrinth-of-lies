@@ -76,9 +76,9 @@ class Player {
     constructor(name) {
         this.name = name;
         this.playerClass = "Knight";
-        this.weapon = "Sword Power";
-        this.weaponPower = 5;
-        this.maxHealth = 20;
+        this.weapon = "Battleaxe Power";
+        this.weaponPower = 8;
+        this.maxHealth = 50;
         this.health = this.maxHealth;
         this.healthPotions = 5;
         this.potionPower = 5;
@@ -86,9 +86,9 @@ class Player {
     weaponAttack(enemy) {
         if (miss() === 1) {
         enemy.health -= this.weaponPower;
-        displayStory(`${this.name} attacked the ${enemy.name}. His health was reduced by ${this.weaponPower}`);
+        displayStory(`${this.name} attacks the ${enemy.name}. His health is reduced by ${this.weaponPower}`);
             if (enemy.health <= 0) {
-                displayStory(`${this.name} has defeated the ${enemy.name}`);
+                displayStory(`You have defeated the ${enemy.name}. Continue down the passage.`);
                 $('.optionThree').removeClass('displayNone');
             }
         } else {
@@ -96,7 +96,7 @@ class Player {
         }
     }
     heal() {
-        if (this.health >= 20) {
+        if (this.health >= this.maxHealth) {
             displayStory('You already have full health')
         }
         else if (this.healthPotions >= 1) {
@@ -181,7 +181,7 @@ const displayPotions = (player) => {
 
 //functions that display story elements in the DOM
 const displayStory = (string) => {
-    $('.storyDisplay').text(string);
+    $('.storyDisplay').html(string);
 }
 
 const introStoryDisplay = (string) => {
@@ -198,8 +198,10 @@ const displayImage = (image) => {
 
 const displayFightOptions = () => {
     $('.optionOne').text('Weapon Attack');
+    $('.optionTwo').removeClass('displayNone');
     $('.optionTwo').text('Healing Potion');
     $('.optionThree').text('Continue');
+    console.log('display fight options');
 }
 
 const displayOptions = (scenario) => {
@@ -207,10 +209,14 @@ const displayOptions = (scenario) => {
     if (scenario.optionTwo) {
         $('.optionTwo').removeClass('displayNone').text(scenario.optionTwo);
         console.log('option two displayed');
+    } else {
+        $('.optionTwo').addClass('displayNone')
     }
     if (scenario.optionThree) {
         $('.optionThree').removeClass('displayNone').text(scenario.optionThree);
         console.log('option three displayed');
+    } else {
+        $('.optionThree').addClass('displayNone')
     }
 } 
 
@@ -275,35 +281,61 @@ const displayAllStats = () => {
 
 //create all monsters
 //monsters must be declared before fight scenarios
-const riverMonster = new Monster ('Water Dragon', 'Claws', 2, 10);
+const bullywug = new Monster ('Bullywug', 'Greataxe', 5, 30);
 
 //scenarios
 
 const startScenario = new Scenario (
     'startScenario',
-    "You enter the dungeon slowly, there are two lanes in front of you", 
-    "go right",
+    "You descend into the tunnels of the Cave of Sorrows. Following the rough map the King gave you, you navigate through a series of natural caverns. <br><br> Soon you hear the sound of running water. <br><br> Ahead, you see that a sizable underground stream runs across your path.", 
+    "Run and jump across the stream",
+    "Wade through the stream"
     )
 
-const scenarioTwo = new Scenario (
-    'scenarioTwo',
-    "You see a small pebble in front of you, and then a stream",
-    "pick up pebble",
-    'throw pebble into stream',
+const jumpStream = new Scenario (
+    'jumpStream',
+    "You launch yourself forward into the air, easily clearing the stream. Glancing back, you see that the surface of the water remains undisturbed. <br><br> You turn your attention back to the passage ahead and continue on.",
+    'Continue on'
+)    
+
+const bullywugFight = new FightScenario (
+    'bullyWugFight',
+    'You wade into the water and all of a sudden you see something stirring within the depths! As you watch, you see a bizarre creature emerging from the water: a frog-like humanoid, wielding a greataxe!',
+    bullywug
 )
 
-const scenarioThree = new FightScenario (
-    'scenarioThree',
-    "FIGHT! There is a large frog creature in front of you",
-    riverMonster
+const twoExits = new Scenario (
+    'twoExits',
+    'You reckon you must be at least two miles below the surface by now. You walk for what seems like hours, seeing no other signs of life other than fungi growing on the rough passage walls. <br><br> Some time later you see that the passage opens into a cavern ahead. <br><br> You see two exits leading out of this room, in addition to the passage you entered by.',
+    'Take the left diagonal',
+    'Take the right diagonal'
+)
+
+const boulder = new Scenario (
+    'boulder',
+    'You continue down a curving passage, wondering whether it will ever end. Suddenly, there is a booming sound, followed by a deep thrum, as of something large rolling. <br><br> No... it can\'t be...To your horror you look behind and see it...<br><br> A huge boulder, the width of the entire passage, rolling towards you! <br><br> You have only a few seconds before this boulder reaches you and squashes you flat!',
+    'Turn tail and run!',
+    'Attempt to dodge the boulder'
+)
+
+const boulderRun = '';
+
+const boulderDodge = new Scenario (
+    'boulderDodge',
+    'Bracing yourself, you wait until the boulder is almost upon you, then try and flatten yourself against the wall to avoid being crushed. <br><br> It\'s at that moment that something catches your eye, a flicker in the boulder through which you can see the tunnel beyond, and then you realize - this boulder is an illusion! <br><br> Whoever placed this illusion here has a wicked sense of humour, but they\'ll have to try harder than that to get the better of you!',
+    'Continue on'
 )
 
 //stores which scenarios should be displayed depending on players choices
 //must be declared after scenarios are created
 const game = {
-    startScenario: [scenarioTwo, scenarioThree],
-    scenarioTwo: [scenarioThree, startScenario],
-    scenarioThree: [startScenario]
+    startScenario: [jumpStream, bullywugFight],
+    jumpStream: [twoExits],
+    bullyWugFight: [twoExits],
+    twoExits: [boulder, ],
+    boulder:[boulderRun, boulderDodge],
+    boulderRun: [],
+    boulderDodge: []
 }
 
 //keeps track of which scenario is currently displayed in the DOM
@@ -351,7 +383,7 @@ $(() => {
         } else {
             const getScenario = game[currentScenario.name][1];
             runScenario(getScenario);
-            toggleHide($('.optionTwo'));
+            // toggleHide($('.optionTwo'));
         }
     })
     
@@ -360,8 +392,8 @@ $(() => {
         if (currentScenario instanceof FightScenario) {
             const getScenario = game[currentScenario.name][0];
             runScenario(getScenario);
-            toggleHide($('.optionTwo'));
-            toggleHide($('.optionThree'));
+            // toggleHide($('.optionTwo'));
+            // toggleHide($('.optionThree'));
         } else {
             const getScenario = game[currentScenario.name][2];
             runScenario(getScenario);
