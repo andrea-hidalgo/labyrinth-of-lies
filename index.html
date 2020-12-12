@@ -9,13 +9,42 @@
 <body>
     <section id="startScreen">
         <h1>Labyrinth of Lies</h1>
-        <button>START GAME</button>
+        <p>a Choose-Your-Own Adventure RPG story</p>
+        <button id="startScreen-btn" class="start-btn">START GAME</button>
     </section>
-    <section id="playerCustomizeScreen"></section>
-    <section id="storyIntroScreen"></section>
-    <section id="gameScreen">
+    <section id="playerCustomizeScreen" class="gameContainer">
+        <h3>Who dares embark on this quest?</h3>
+        <input type="text" id="playerName" placeholder="Enter Player Name">
+        <h3>Select Your Class</h3>  
+        <div class ="classOption">
+            <p>Knight</p>
+        </div>
+        <button id="customize-btn" class="start-btn">START</button>
+    </section>
+    <section id="storyIntroScreen" class="gameContainer">
+        <div id="introStoryDisplay" class="display">
+            <p>Strange clusters of amethyst crystals have been making their way into the city of Iskar for the past month, along with dire predictions of doom and destruction. You had brushed it off as a bad hoax...until now. 
+            </p>
+            <p>As you stare deep into the huge cluster of stone in the King’s hall, you see the light change within. It displays scenes, visions. Cities levelled, Iskar burning to the ground. You see yourself, body askew, lying motionless in your bed chamber. You take a step back.
+            </p>
+            <p>“Well?”, the King says.
+            </p>
+            <p>“I can do it”, you hear yourself say, before the shock has worn off. “I can get to the bottom of this.”
+            </p>
+            <p>“You have no idea of the horrors that await. But still... I suppose if you wish to forfeit your life, who am I to stand in your way? We are running out of options after all." The King grabs a rough drawn map from the table and motions you closer. "Rumors talk of a place called the Umbral Chamber, deep within the Cave of Sorrows. No one has come back alive so far."
+            </p>
+            <p>
+            “1000 gold and a farmstead. You have three days” says the King, handing you the map.
+            </p>
+            <p>You bow briskly before heading out of the chamber, leaving the sneakering behind. Adventure awaits.</p>
+        </div>
+        <button id="storyIntro-btn" class="start-btn">ENTER</button>
+    </section>
+    <section id="gameScreen" class="gameContainer">
         <div class="display">
+            <div class="monsterImage"></div>
             <p class="storyDisplay"></p>
+            <p class="monsterFight"></p>
         </div>
         <div class="lower-section">
         <div class="playerStats">
@@ -29,9 +58,9 @@
             </ul>
         </div>
         <div class="playerOptions">
-            <button class="option optionOne"></button>
-            <button class="option optionTwo"></button>
-            <button class="option optionThree"></button>
+            <button class="option optionOne displayNone"></button>
+            <button class="option optionTwo displayNone"></button>
+            <button class="option optionThree displayNone"></button>
         </div>
         </div>
     </section>
